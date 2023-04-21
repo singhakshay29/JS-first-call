@@ -18,7 +18,7 @@ console.log(age);
 The let and const keywords were added to JavaScript in 2015.
 If you want your code to run in older browsers, you must use var.*/
 
-//Data types
+//Data types 
 //1.String
 //2.Number
 //3.Boolean
@@ -60,7 +60,7 @@ console.log(arr);
 
 let arr1=[1,4,"abcd"];
 //---get----
-console.log(arr[2]);
+console.log(arr[2]);//index position
 
 //----edit------
 arr[0]="start";
@@ -70,16 +70,15 @@ console.log(arr);
 console.log(arr.length)
 
 //----Arrays properties
-arr.push(89);
+arr.push(89);//insert element at end
 console.log(arr);
 
-arr.pop();
+arr.pop();//remove element from last
 console.log(arr);
 
-arr.shift();
+arr.shift();//remove element from start
 console.log(arr);
 
-/*
 let user = [{
     name: "akshay",
     parents: [{
@@ -90,6 +89,5 @@ let user = [{
         age: 55,
     }]
 }]
-console.log(user);
-console.log(user.parents);
-*/
+//console.log(user);
+console.log(user[0].parents[1].name);
