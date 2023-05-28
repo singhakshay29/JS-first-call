@@ -90,7 +90,7 @@ function abc(){
     console.log(a);//12
 }
 abc()
-console.log(a);12
+console.log(a);1//13
 */
 //problem 5
 /*
@@ -113,30 +113,30 @@ console.log(result);//12
 console.log(a);//13
 */
 //problem 6
-/*
+
 console.log(a)//undefined
 var a=12;
 abbc()
 function abbc(){
     console.log("Hello")//hello
-    console.log(a);//undefined
+    console.log(a);//undefined<-----imp
     var a=19;
     console.log(a);//19
 }
 console.log(a);//12
-*/
-/*
+
+
 var aa=12;
 var bb=12;
+abc();
 function abc(){
     var a=100;
     console.log(aa);
     console.log(bb);//12
 }
-abc();
 console.log(aa);//12
 console.log(bb);//12
-*/
+
 //---------------let and const----------
 //let and const have block scope
 /*case1
