@@ -119,3 +119,26 @@ console.log(li_Element);
 
 const unorderlist=document.getElementById('name');
 unorderlist.append(li_Element);
+
+
+
+
+//------------Removal of element------------
+
+
+//1.one way
+const removeElement=document.getElementById("name");
+console.dir(removeElement);
+const remo=removeElement.children
+//const firstchild=remo.item(2);
+//firstchild.remove();
+console.log(remo);
+
+
+//2.another way
+
+const letsremove =document.querySelector("#name > li:nth-child(3)");
+letsremove.remove();
+console.log(letsremove);
+
+//removeElement.remove();
