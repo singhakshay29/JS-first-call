@@ -108,11 +108,7 @@ Arrays.forEach(liElement=>{
 
 //1.create element
 
-const li_Element=document.createElement("li");
-//console.log("li",li_Element);
-
-//2.edit the element
-li_Element.innerText="vijay denanath chauhan";
+const li_Element=document.createElement("vijay denanath chauhan");
 console.log(li_Element);
 
 //3.attached with ul
