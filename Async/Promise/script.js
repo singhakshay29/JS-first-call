@@ -102,13 +102,43 @@ function addingToDom(quote){
 // })
 
 
+//..............catching errors...................
+
+
+// console.log("Let's do it")//1.
+// fetch("https://api.kanye.rest/")//.then always return something
+// .then(response=>{
+//     return response.json();
+// }).then(data=>{
+//     console.log(data);//3.//we get the data
+// }).catch(error=>{
+//     console.log("something is wrong at 1");//2
+// }).then(data=>{
+//     console.log(data);//3./we get undefined
+// }).catch(error=>{
+//     console.log("something is wrong at 2");//2
+// }).then(data=>{
+//     console.log(data);//3./we get undefined
+// }).then(data=>{
+//     console.log(data);//3./we get undefined
+// }).then(data=>{
+//     console.log(data);//3./we get undefined
+// }).catch(error=>{
+//     console.log("something is wrong at 5");//2
+// }).finally(()=>{
+//     console.log("all task completed");
+// })
 
 
 
-console.log("Let's do it")//1.
+
+
+//console.log("Let's do it")//1.
 fetch("https://api.kanye.rest/")//.then always return something
 .then(response=>{
     return response.json();
+},(error)=>{
+    console.log('catched the error here 0')
 }).then(data=>{
     console.log(data);//3.//we get the data
 }).catch(error=>{
@@ -128,3 +158,29 @@ fetch("https://api.kanye.rest/")//.then always return something
 }).finally(()=>{
     console.log("all task completed");
 })
+
+
+
+
+
+
+
+//why callback is not used
+
+
+//1.Due to pyramid of Dom
+
+//2.Order of excution of inner function is not linear
+
+// machine(start,(end)=>{
+//     console.log(1);
+//     engine(start,(pressue_gain)=>{
+//         console.log(2);
+//     })
+//     console.log(3);
+//     engine();
+//     console.log(4);
+
+// });
+
+// machine();
