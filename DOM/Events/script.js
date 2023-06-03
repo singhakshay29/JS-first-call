@@ -21,7 +21,7 @@ grandcontainer.style.height="400px";
 grandcontainer.style.backgroundColor="green";
 grandcontainer.addEventListener('click',()=>{
     console.log("grandparent clicked");
-},true)
+},false)
 
 
 const parentscontainer=document.getElementById("parents");
@@ -30,9 +30,10 @@ parentscontainer.style.width="200px";
 parentscontainer.style.height="200px";
 parentscontainer.style.margin="80px";
 parentscontainer.style.backgroundColor="yellow";
-parentscontainer.addEventListener('click',()=>{
+parentscontainer.addEventListener('click',(event)=>{
     console.log('parent is clicked')
-},true)
+    event.stopPropagation();
+},false)
 
 const childcontainer=document.getElementById("child")
 childcontainer.style.border="4px solid black";
@@ -40,10 +41,37 @@ childcontainer.style.width="80px";
 childcontainer.style.height="80px";
 childcontainer.style.margin="50px";
 childcontainer.style.backgroundColor="red";
-childcontainer.addEventListener('click',()=>{
+childcontainer.addEventListener('click',(event)=>{
     console.log('child is clicked');
-},true)
+    event.stopPropagation();
+},false)
 
+
+
+//Event delegation
+//stopPropagation-----it stop the event object at current element
+//event propagation is freezed
+
+//adding event listeneris basically adding an object in the memory
+
+
+const mysubmitbutton=document.getElementById('submit');
+mysubmitbutton.style.backgroundColor="grey";
+mysubmitbutton.style.border="4px solid black";
+mysubmitbutton.style.height="100px";
+mysubmitbutton.style.width="100px";
+
+
+// mysubmitbutton.addEventListener('click',()=>{
+//     console.log('click me yrr');
+// })
+
+//we have to give the name to our function for that
+mysubmitbutton.addEventListener('click',buttonClickHandle)
+
+function buttonClickHandle(event){
+    console.log('click me');
+}
 
 
 
