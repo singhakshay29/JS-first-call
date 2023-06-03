@@ -42,29 +42,29 @@ console.log('its completed')
 //Implementation waya async
 
 
-async function fetchingdata(){
+// async function fetchingdata(){
 
-    console.log('initial');
-    const awaitresult=await fetch("https://api.kanye.rest/")//fetch will give the response to awaitresult,response object is huge their are so many key value
+//     console.log('initial');
+//     const awaitresult=await fetch("https://api.kanye.rest/")//fetch will give the response to awaitresult,response object is huge their are so many key value
 
-    console.log(awaitresult);
-
-
-    const data= await awaitresult.json();//json give the data to our data variable....?
-    console.log(data);
-    const{quote}=data;
-   // const quote=data.quote; above and this line are ..??
-   console.log(data);
-
-    console.log('after fetching');
-
-    console.log(awaitresult);
-    addingToDom(quote);
+//     console.log(awaitresult);
 
 
-}
+//     const data= await awaitresult.json();//json give the data to our data variable....?
+//     console.log(data);
+//     const{quote}=data;
+//    // const quote=data.quote; above and this line are ..??
+//    console.log(data);
 
-fetchingdata();
+//     console.log('after fetching');
+
+//     console.log(awaitresult);
+//     addingToDom(quote);
+
+
+// }
+
+// fetchingdata();
 
 
 
@@ -184,3 +184,35 @@ fetch("https://api.kanye.rest/")//.then always return something
 // });
 
 // machine();
+
+//................Promise Creation..............
+
+//fetching...
+
+//1.calling a server
+
+//2.judging the data
+//a.if data is ok ....successful
+//b.if data is bad....Error..
+
+
+// const myfetch=new Promise((resolve,reject)=>{
+//     //1.calling the server
+
+//     //const data=XMLHttpRequest();///this is the way calling data
+//     const data={status:200,url: "blah blah"}
+//     data :{
+//         name:"kalki"
+//         yug:"kalyug"
+//     }
+
+//     //judgging the data
+//     if(data.status===200)
+//     {
+//         //goood
+//         resolve(data);
+//     }else if(data===500){
+//         //bad error
+//         reject({errorCode : 500, message: "hey there is an error"})
+//     }
+// })

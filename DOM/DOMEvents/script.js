@@ -35,3 +35,10 @@ document.addEventListener("beforeunload",()=>{
     //cleaning
     //saving the form if accidently reload
 })
+
+//there are three phase 
+//bubbling
+//target
+//capturing
+
+
