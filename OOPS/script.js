@@ -131,6 +131,78 @@ var object={
 //object.func();//here js seen the extra information is given whatever befor --->(.)<----
 //so here object is the context of func
 
+//Example..2
+
+let obj3={
+    name:"obj3",
+    sum:function(a,b){
+        console.log(a+b);
+    }
+}
+
+
+let obj2={
+    name:"obj2",
+    obj3:obj3
+}
+
+
+let obj1={
+    name:"obj1",
+    obj2:obj2
+}
+
+//obj1.obj2.obj3.sum(2,5);
+
+//Example..3
+
+let newobj={
+    name:"monday",
+    sum:function(a,b){
+        console.log(a+b);
+    }
+}
+newobj.sum(9,2);//call site
+
+let copynewobj=newobj;
+console.log(copynewobj);//copy object
+
+copynewobj=newobj.sum;//copy object function
+
+console.log(copynewobj);
+copynewobj(5,8);//excuting function,call site
+
+//Example ..4.....?
+
+function lead(num){
+    this.a=num;
+}
+var OBj={
+    lead:lead
+}
+
+OBj.lead(100);
+console.log(OBj);
+
+
+//----------------Issues----------------------//
+
+let myobj={
+    num1:1,
+    num2:3,
+    num3:5,
+    sum:function(){
+        console.log("Inside the object");//Inside the object
+        console.log(this.num2+" "+this.num3);//undefine
+        console.log(this.sum);//function obj
+        console.log(this.num1+this.num2);//undefine+undefine===>NaN
+    }
+}
+
+let copymyobj=myobj.sum
+
+copymyobj();//call site
+
 
 
 //3.------------Explicit binding------------
@@ -168,9 +240,86 @@ function abc(a,b){
 }
 //abc.call(obj,12,66);//object is the context
 
+//--------------------apply---------------------
+
+function power(str1,str2){
+    this.a=str1;
+    this.b=str2;
+}
+var bike={
+    name:"splendor",
+    power:power
+}
+var bike2={
+    name:"yezdi"
+}
+
+bike.power.call(bike2,"apache","pulsor");
+console.log(bike2);
+console.log("-----------------------");
+bike.power.apply(bike2,["avenger","shine"])
+console.log(bike2);
 
 
-//-----------new keyword()-----------
+
+
+
+
+//Implicit vs Explicit
+
+// function power(str){
+//     this.a=str;
+// }
+// var bike={
+//     power:power
+// }
+// var bike2={
+//     name:"yezdi"
+// }
+
+// bike.power.call(bike2,"apache");//power will have context of bike2 object
+// bike.power.call(null,"apache");//power will have context of window object
+
+
+'use strict'
+bike.power.call(null,"apache");//power will have context of null
+//console.log(bike);
+//console.log(bike2);
+
+
+
+//-------Properties description------------
+
+
+const abba={
+    name:"akshay",
+    brother:2,
+    sister:1
+}
+
+for(const key in abba){
+    console.log(key);
+}
+console.log(abba);
+
+//------propertEnumerable----
+//properties which are enumerable will be part
+
+console.log(abba.propertyIsEnumerable("name"));
+
+
+
+
+
+
+
+//-----------new keyword vs implict-----------
+let car=new bike.power("pulsor")
+//console.log(car);
+
+
+//----------Priorites----------------
+//new>exlicit>implicit>default
 
 
 
