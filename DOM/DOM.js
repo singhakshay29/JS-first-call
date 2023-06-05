@@ -76,7 +76,7 @@ smbox3.style.margin="30px";
 
 
 
-//another way
+//another way event delegation
 
 const bigbox=document.getElementById("bigbox");
 
