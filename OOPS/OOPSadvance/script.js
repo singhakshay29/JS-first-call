@@ -70,35 +70,35 @@ console.log(obj,"obj")
 //the property of an object which is directly in the object not in the prototype
 
 
-class Car {
-    canmove=2
-    fun(){
-        console.log("abcdef");
-    }
-}
+// class Car {
+//     canmove=2
+//     fun(){
+//         console.log("abcdef");
+//     }
+// }
 
-let carAudi=new Car();
-console.log(carAudi);
+// let carAudi=new Car();
+// console.log(carAudi);
 
-carAudi.fun();
+// carAudi.fun();
 
-const carObj={
-    canMove:true,
-    fun:function(){
-        console.log("carObj",carObj);
-    }
-}
-console.log(carObj);
+// const carObj={
+//     canMove:true,
+//     fun:function(){
+//         console.log("carObj",carObj);
+//     }
+// }
+// console.log(carObj);
 
-const descriptors=Object.getOwnPropertyDescriptor(carObj,"fun");//function inside object are accesble
-console.log(descriptors,"descriptors fun");
+// const descriptors=Object.getOwnPropertyDescriptor(carObj,"fun");//function inside object are accesble
+// console.log(descriptors,"descriptors fun");
 
-let carBMW=new Car();
-console.log(carBMW,"abcdef");
-const descriptors1=Object.getOwnPropertyDescriptor(carBMW,"canmove");
-console.log(descriptors1,"carBMWClass");
-const descriptors2=Object.getOwnPropertyDescriptor(carBMW,"fun");//function inside class not accessble but for 
-console.log(descriptors2);
+// let carBMW=new Car();
+// console.log(carBMW,"abcdef");
+// const descriptors1=Object.getOwnPropertyDescriptor(carBMW,"canmove");
+// console.log(descriptors1,"carBMWClass");
+// const descriptors2=Object.getOwnPropertyDescriptor(carBMW,"fun");//function inside class not accessble but for 
+// console.log(descriptors2);
 
 
 /*
@@ -136,7 +136,83 @@ console.log(date.getFullYear());
 console.log(date.getMonth());
 
 
+//------------------------------------------------------//
 
+
+class Car {
+    model="basic engine"
+    speed;
+
+constructor(speed,model){
+    this.model=model
+    this.speed=speed
+}
+
+canIDrive(){
+    console.log("yes you can")
+}
+
+
+}
+
+const maruti=new Car(50,"mini");
+console.log(maruti);//here we can't see the function inside-->function will come in prototype method
+//which is more benefical whenever we call function will come in prototype
+
+
+function CarConstructor(speed,model){
+    this.speed=speed
+    this.model=model
+    this.canIDrive=function(){
+        console.log("yaaay u can",this.speed);
+    }
+}
+
+const innova =new CarConstructor(200,"prime")
+console.log(innova);//here  we can see the function inside this
+
+//every time we create carconstructor it made all 3 values whic take space
+
+
+//-------------Inheritance------------------//
+
+class newCar {
+    wheels;
+    fuelTank;
+    modelNumber;
+
+    constructor(){
+        this.wheels=4;
+        this.fuelTank="full";
+        this.modelNumber="prime"
+    }
+
+    canIDrive(){
+        console.log("I can drive");
+    }
+
+}
+
+
+class  suzukiCar extends newCar{
+    sportmodel;
+    airbags;
+    autoconnet;
+
+    constructor(sportmodel,airbags,autoconnet){
+        super()//refers to parent class
+        this.sportmodel=sportmodel;
+        this.airbags=airbags;
+        this.autoconnet=autoconnet;
+    }
+    canIDrivesuzuki(){
+        console.log("its a automatic so i can't");
+    }
+}
+
+
+const verna=new suzukiCar("s class",2,"yes");
+console.log(verna);
 
 
 
