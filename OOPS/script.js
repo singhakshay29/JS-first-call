@@ -288,30 +288,6 @@ bike.power.call(null,"apache");//power will have context of null
 
 
 
-//-------Properties description------------
-
-
-const abba={
-    name:"akshay",
-    brother:2,
-    sister:1
-}
-
-for(const key in abba){
-    console.log(key);
-}
-console.log(abba);
-
-//------propertEnumerable----
-//properties which are enumerable will be part
-
-console.log(abba.propertyIsEnumerable("name"));
-
-
-
-
-
-
 
 //-----------new keyword vs implict-----------
 let car=new bike.power("pulsor")
