@@ -216,3 +216,108 @@ console.log(verna);
 
 
 
+/*
+
+     Getters and setters..........
+
+
+*/
+
+
+
+const _radius=new WeakMap()
+
+
+class Circle{
+    constructor(radius){
+    _radius.set(this,radius)
+}
+get radius(){
+    return _radius.get(this);
+}
+}
+
+const circle=new Circle(10);
+console.log(circle);
+
+//console.log(circle.radius());
+
+
+
+
+
+/*
+
+
+Method overridding
+
+
+*/
+
+class student{
+    name;
+    constructor(name){
+        this.name=name;
+    }
+    markattendace(){
+        console.log("present");
+    }
+
+}
+const akshay=new student("akshay");
+akshay.markattendace();
+console.log(akshay);
+
+class TeamCaptain extends student{
+    bagde;
+    constructor(name,bagde){
+        super(name);
+        this.bagde=bagde;
+    
+    }
+    playmatch(){
+
+    }
+
+}
+
+const ajaysportscaptain=new TeamCaptain("ajay",12);
+console.log(ajaysportscaptain);
+
+
+
+
+class Shape{
+
+    constructor (color){
+        this.color=color;
+    }
+    changeble(){
+        console.log("move");
+    }
+}
+
+class Order extends Shape{
+    constructor(radius,color){
+        super(color);
+        this.radius=radius;
+    }
+    draw(){
+        console.log("yes");
+    }
+}
+
+const blade=new Order(5,"red");
+console.log(blade);
+function ShapeConstructor(){
+    this.color=this.color;
+    this.move=function(){
+        console.log("....move");
+    }
+}
+
+
+const shapeObject=new Shape("purple");
+const shapeConstructorObject=new ShapeConstructor("pink");
+console.log()
+
