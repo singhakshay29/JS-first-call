@@ -230,7 +230,7 @@ const _radius=new WeakMap()
 
 class Circle{
     constructor(radius){
-    _radius.set(this,radius)
+    _radius.set(this,radius)//key,value
 }
 get radius(){
     return _radius.get(this);
@@ -264,17 +264,20 @@ class student{
     }
 
 }
-const akshay=new student("akshay");
-akshay.markattendace();
-console.log(akshay);
+const stulist=new student("aman ");
+stulist.markattendace();
+console.log(stulist);
 
 class TeamCaptain extends student{
     bagde;
     constructor(name,bagde){
-        super(name);
+        super(name);//this is to call constructor of parent
         this.bagde=bagde;
     
     }
+    // markattendace(){
+    //     console.log("teamCaptain present")
+    // }
     playmatch(){
 
     }
@@ -282,7 +285,7 @@ class TeamCaptain extends student{
 }
 
 const ajaysportscaptain=new TeamCaptain("ajay",12);
-console.log(ajaysportscaptain);
+console.log(ajaysportscaptain.markattendace());
 
 
 
@@ -308,16 +311,51 @@ class Order extends Shape{
 }
 
 const blade=new Order(5,"red");
-console.log(blade);
-function ShapeConstructor(){
-    this.color=this.color;
-    this.move=function(){
-        console.log("....move");
-    }
+//console.log(blade);
+
+
+function ShapeConstructor(color){
+    this.color=color;
+    // this.move=function(){
+    //     console.log("....move");
+    // }
 }
 
 
 const shapeObject=new Shape("purple");
+const orderObject=new Order(5,"black");//but if we give("black", then it also be acceptable still not giving error)
 const shapeConstructorObject=new ShapeConstructor("pink");
-console.log()
+console.log(shapeObject);
+console.log(orderObject);
+console.log(shapeConstructorObject);//in this function is coming in own properties
+//for moving in prototype we can try this
+
+ShapeConstructor.prototype.move=function(){
+    console.log("....move");
+}//here we change the prototype and shift the function will be in prototype
+const shapeConstructorObjectnew=new ShapeConstructor("yellow");
+console.log(shapeConstructorObjectnew);
+
+
+//we have created new constructor in which we are parent constructor
+function circleConstructor(length,color){
+    this.length=length;
+    ShapeConstructor.call(this,color);
+
+}
+
+
+//as you can see that prototype is not of ShapeConstructor 
+//to add Inheriteance
+//we have made the ShapeConstructor object
+circleConstructor.prototype=Object.create(ShapeConstructor.prototype);
+
+//now we are adding 
+
+const circleConstructorObject=new circleConstructor(10,"green");
+console.log(circleConstructorObject);
+circleConstructor.prototype.move=function(){
+    console.log("....move");
+}
+console.log(circleConstructorObject);
 

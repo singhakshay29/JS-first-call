@@ -93,7 +93,7 @@ function cabel(){
 
 
 
-//4 rule-----determine the context------
+//There are 4 rule-----determine the context------
 
 
 
@@ -124,11 +124,11 @@ var object={
     classes:"five",
     func:function(){
         console.log(this.table,this.chair);
-        console.log(this);
+        console.log(this);//<-----?intersting
     }
 
 }
-//object.func();//here js seen the extra information is given whatever befor --->(.)<----
+object.func();//here js seen the extra information is given whatever befor --->(.)<----
 //so here object is the context of func
 
 //Example..2
@@ -214,7 +214,7 @@ function utf(a,b){
     console.log("abcdef",a,b);
 }
 
-//utf.call(undefined,1,2);//here underfined we are giving is the contex
+utf.call(undefined,1,2+"ans");//here underfined we are giving is the contex
 
 
 
@@ -226,10 +226,10 @@ function utf(a,b){
 
 //abc(5,8);//call site is global here no extra info is given
 
-const obj={
-    a:45,
-    food:"no"
-};
+// const obj={
+//     a:45,
+//     food:"no"
+// };
 
 
 
@@ -256,6 +256,7 @@ var bike2={
 
 bike.power.call(bike2,"apache","pulsor");
 console.log(bike2);
+console.log(bike);
 console.log("-----------------------");
 bike.power.apply(bike2,["avenger","shine"])
 console.log(bike2);
@@ -281,7 +282,7 @@ console.log(bike2);
 // bike.power.call(null,"apache");//power will have context of window object
 
 
-'use strict'
+//'use strict'
 bike.power.call(null,"apache");//power will have context of null
 //console.log(bike);
 //console.log(bike2);
@@ -291,11 +292,83 @@ bike.power.call(null,"apache");//power will have context of null
 
 //-----------new keyword vs implict-----------
 let car=new bike.power("pulsor")
-//console.log(car);
+console.log(car);
 
 
 //----------Priorites----------------
 //new>exlicit>implicit>default
 
+
+
+//Questions
+
+let obj={
+    name:"udiurappa"
+}
+
+function f(){
+    console.log(this);//ans
+    function f2(){
+        console.log(this);//ans
+    }
+    f2();
+}
+
+f.call(obj);
+
+//---------------------------------------//
+
+function foo2(){
+    console.log(this);//window
+}
+
+let obj21={
+    foo:function(){
+        console.log(this);//window
+        foo2();
+    }
+}
+
+obj21.foo();
+
+
+//----------------------------------------//
+
+function printThis(para){
+    console.log(this);
+}
+let myobject={
+    a:10,
+    b:20,
+    c:printThis,
+    d:function(para){
+        console.log(this);//myobject
+        printThis();//window
+        let x=this.c;
+        x();//window
+        this.c();//object
+        console.log(this.c == printThis);//true
+    }
+}
+
+myobject.d();
+
+
+//-----------------------------------------//
+
+var a=100;
+var b=99;
+let container={
+    a:10,
+    b:function(){
+        console.log(this.a);
+    },
+    c:()=>{
+        console.log(this.a)//for arrow function no context of inside arrow
+    }
+}
+container.b();
+
+//this inside in refer to parent context in arrow function
 
 
