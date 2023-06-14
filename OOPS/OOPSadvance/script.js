@@ -359,3 +359,70 @@ circleConstructor.prototype.move=function(){
 }
 console.log(circleConstructorObject);
 
+/*
+
+Composition
+
+
+*/
+
+//instead od inheritance
+//we can try composition
+
+
+// class Person{
+//     name
+// }
+
+// class Eat{
+
+// }
+
+// class Walk{
+
+// }
+
+// class Sleep{
+
+// }
+
+// class Work{
+
+// }
+
+// class Person extends Eat,Sleep,Walk,Work{
+
+// }
+
+//1.multiple inheritance not suppoerted
+//2.All the properties go to person class
+//3.Person class became so heavy
+
+const canSwim={
+    swim:function(){
+        console.log("swim");
+    }
+}
+
+const canEat={
+    eat:function(){
+        console.log("Eat");
+    }
+}
+
+const canSleep={
+    sleep:function(){
+        console.log("sleep");
+    }
+}
+
+//constructor function
+
+function Person(name){
+    this.name=name;
+}
+const nerPerson=new Person("Siraj");
+console.log(nerPerson);
+
+Object.assign(Person.prototype,canEat,canSleep);
+console.log(nerPerson.eat());

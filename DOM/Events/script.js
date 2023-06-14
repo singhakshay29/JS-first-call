@@ -11,7 +11,7 @@ container.addEventListener("click",(event)=>{
     buttontarget.style.height="200px";
     buttontarget.style.width="400px";
     buttontarget.style.backgroundColor="red";
-})
+},false)
 
 
 const grandcontainer=document.getElementById("gparents");

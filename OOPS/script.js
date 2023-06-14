@@ -364,11 +364,24 @@ let container={
         console.log(this.a);
     },
     c:()=>{
-        console.log(this.a)//for arrow function no context of inside arrow
+        console.log(this.a)//for arrow function no context of inside arrow,arguments are also not define in arrow function
     }
 }
 container.b();
 
 //this inside in refer to parent context in arrow function
 
+
+
+
+
+
+//Arguments
+
+function abc(a,b){
+    const arg=arguments;
+    console.log(arg);
+    console.log(arg[0],arg[1]);
+}
+abc(100,499);
 
