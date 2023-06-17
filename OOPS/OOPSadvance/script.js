@@ -426,3 +426,28 @@ console.log(nerPerson);
 
 Object.assign(Person.prototype,canEat,canSleep);
 console.log(nerPerson.eat());
+
+
+
+//concept of this with new  keyword
+
+function newPerson(){
+    this.name='akshay';
+    this.city='lko';
+    city="kanpur";
+    this.day=()=>{
+       this.city=city;
+        console.log(this.city);
+    }
+
+    this.nextday =function(){
+        console.log(this.city);
+    }
+}
+
+const p=new newPerson();
+
+const eluminati=p.day;
+const miracle=p.nextday;
+eluminati();
+miracle();

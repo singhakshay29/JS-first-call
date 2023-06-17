@@ -9,35 +9,35 @@
 
 //we fetch(server) api to call the server
 
-console.log("hello");
+// console.log("hello");
 
-const promiseresults=
-fetch('https://api.kanye.rest/')//fetch is an internal function provided by browser it return the promise result(fetch created by browser people)
-.then(responseObj=>{            //.then are consumer of promise
-    console.log(responseObj.status)/////it give the status
-    return responseObj.json()////to se the result value 
-})
-.then(data=>{
-    const quote=data.quote;
-
-
-    const element=document.createElement('h1');
+// const promiseresults=
+// fetch('https://api.kanye.rest/')//fetch is an internal function provided by browser it return the promise result(fetch created by browser people)
+// .then(responseObj=>{            //.then are consumer of promise
+//     console.log(responseObj.status)/////it give the status
+//     return responseObj.json()////to se the result value 
+// })
+// .then(data=>{
+//     const quote=data.quote;
 
 
-    element.textContent=quote;
+//     const element=document.createElement('h1');
 
 
-    const body=document.body;
-   // body.appendChild(element);
-    console.log('data',data)
-}).catch(error=>{
-    console.log('Something is wrong')
-    console.log(error);
-})
+//     element.textContent=quote;
 
-console.log(promiseresults);
 
-console.log('its completed')
+//     const body=document.body;
+//    // body.appendChild(element);
+//     console.log('data',data)
+// }).catch(error=>{
+//     console.log('Something is wrong')
+//     console.log(error);
+// })
+
+// console.log(promiseresults);
+
+// console.log('its completed')
 
 //Implementation waya async
 
@@ -84,6 +84,40 @@ function addingToDom(quote){
 
 
 //Behind the scenes
+
+
+
+
+console.log("hello");//(1)first line will excute it will got to stack and print the hello and taken from stack
+
+const promiseresults=fetch('https://api.kanye.rest/')//as soon as it sees the fetch it will send an https call to server and all handlers send to web api memory
+.then(responseObj=>{            //.all the handlers are save in web api memory along with call back function  (handlers are .then,catch,finally)
+    console.log(responseObj.status)//
+    return responseObj.json()//
+})
+.then(data=>{
+    const quote=data.quote;
+    const element=document.createElement('h1');
+    element.textContent=quote;
+    const body=document.body;
+   // body.appendChild(element);
+    console.log('data',data)
+}).catch(error=>{
+    console.log('Something is wrong')
+    console.log(error);
+})
+
+console.log(promiseresults);
+
+console.log('its completed')(2)//excutor come here and excute it
+
+
+//for web api their is micro taks queue(when the api fetch is successfull it response come in micro queue)
+//for set time out their is macro task queue
+//both work as same
+//their is event loop which work infinitly
+//event loop check micro task their is anything if their is response it check whether stack is empty or not if it empty
+//resposne come in stack which will excute
 
 
 
