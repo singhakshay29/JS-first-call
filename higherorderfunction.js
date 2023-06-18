@@ -145,3 +145,14 @@ function calculator(operation){
 
 let solution=calculator('addi');
 console.log(solution);
+
+
+function sum(a,b){
+    return a+b;
+}
+const myans=sum(1,2);
+//console.log(myans);
+
+const newans=sum(1)(2);
+
+console.log(newans);
