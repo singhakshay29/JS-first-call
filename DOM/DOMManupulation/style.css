@@ -1,0 +1,42 @@
+.day {
+    background-color: white;
+    color: black;
+}
+
+.night {
+    background-color: black;
+    color: gold;
+}
+
+.button_night {
+    background-color: darkblue;
+    color: white;
+}
+
+.button_day{
+    background-color: white;
+    color: black;
+}
+
+html, body {
+    margin: 0px;
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+    padding: 10px;
+}
+
+.container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+.hidden{
+  display: none;
+}
