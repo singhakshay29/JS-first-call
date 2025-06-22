@@ -1,0 +1,142 @@
+<table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation" style="background-color: #F8F8F8; font-family: 'General Sans','Segoe UI', sans-serif; margin: 0; padding: 0; color: #000;">
+    <style>
+      body, table, td, a, span, div {
+        -webkit-text-size-adjust: none !important;
+        -ms-text-size-adjust: none !important;
+      }
+  
+      @media only screen and (max-width: 600px) {
+        .container {
+          width: 100% !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      }
+    </style>
+  
+    <tr>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <tr>
+            <td height="20" style="line-height: 20px; font-size: 0;">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 600px; background-color: #ffffff; border-radius: 12px;" class="container">
+          <tr>
+            <td style="padding: 0 20px;" class="container-padding">
+              <table role="presentation" width="100%" style="height: 90px;">
+                <tr>
+                  <td align="center" style="padding: 10px 20px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                    <img src="https://csvpayhub.s3.ap-south-1.amazonaws.com/images/p_hzyjop.png" alt="PayHub Logo" style="display: block; width: auto; height: 40px; max-height: 40px; line-height: 1; border: 0;" />
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding: 10px 20px; font-weight: 600; font-size: 20px; line-height: 100%; letter-spacing: 0%;">
+                    ${finalFormat}
+                  </td>
+                </tr>
+              </table>
+  
+              <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px;margin-bottom: 10px;margin-top: 10px; padding-top: 20px;" >
+                <tr>
+                  <td align="center">
+                    <table role="presentation" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" style="font-size: 40px; font-weight: 600; line-height: 100%;">
+                          <strong>₹${formatNumber(payhub_data)}</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding-top: 20px; padding-bottom: 20px;font-size: 24px; font-weight: 500; line-height: 1.2; color: #00000099;">
+                          Daily Volume
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+  
+              <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; border: 2px solid #eee; border-radius: 10px; margin-top: 30px; margin-bottom: 30px;" class="responsive-table">
+                <tr>
+                  <th align="left" style="padding: 10px; font-weight: 600; font-size: 18px;">MERCHANTS</th>
+                  <th align="right" style="padding: 10px; font-weight: 600; font-size: 18px;">VOLUME</th>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding: 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tr><td style="border-top: 1px solid #0000001A; line-height: 0; font-size: 0;">&nbsp;</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                ${merchant_data
+                  .filter((item) => item.yesterday > 0)
+                  .map((item) => `
+                    <tr>
+                      <td style="padding: 8px; font-weight: 500; font-size: 16px;">${(item.business_name || "NA").toUpperCase()}</td>
+                      <td align="right" style="padding: 8px; font-weight: 500; font-size: 16px;">₹${formatNumber(item.yesterday)}</td>
+                    </tr>
+                  `).join("")}
+              </table>
+  
+  
+              <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; border: 2px solid #eee; border-radius: 10px; margin-bottom: 30px;" class="responsive-table">
+                <tr>
+                  <th align="left" style="padding: 10px; font-weight: 600; font-size: 18px;">GATEWAYS</th>
+                  <th align="right" style="padding: 10px; font-weight: 600; font-size: 18px;">VOLUME</th>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding: 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tr><td style="border-top: 1px solid #0000001A; line-height: 0; font-size: 0;">&nbsp;</td></tr>
+                    </table>
+                  </td>
+                </tr>
+                ${gateway_data
+                  .map((item) => {
+                    if (item.yesterday > 0) {
+                      return `
+                        <tr>
+                          <td style="padding: 8px; text-align: left; font-weight: 500; font-size: 16px;">${(item.gatewayName || "NA").toUpperCase()}</td>
+                          <td style="padding: 8px; text-align: right; font-weight: 500; font-size: 16px;">₹${formatNumber(item.yesterday) || 0}</td>
+                        </tr>
+                      `;
+                    }
+                    return "";
+                  }).join("")}
+              </table>
+              
+              
+              <!--okay-->
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color: #007bff; border-radius: 10px;">
+                <tr>
+                  <td align="center" style="padding: 12px 20px;">
+                    <a href="${url}"
+                       style="display: inline-block; background-color: #007bff; text-decoration: none; border-radius: 6px;">
+                      <span style="color: #ffffff !important; font-size: 20px; font-weight: 500; font-family: 'Segoe UI', sans-serif; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-style-textfill-type:solid; mso-style-textfill-fill-color:#ffffff;">
+                        Download Full Report
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  
+    <tr>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <tr>
+            <td height="20" style="line-height: 20px; font-size: 0;">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>

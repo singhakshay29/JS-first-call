@@ -87,7 +87,7 @@ function digitSum(n){
     }
     
 }
-console.log(digitSum(num));
+//console.log(digitSum(num));
 
 
 //rev digit of num
@@ -104,7 +104,7 @@ function revNumber(n){
     }
     
 }
-console.log(revNumber(num));
+//console.log(revNumber(num));
 
 //strong Num
 
@@ -128,4 +128,135 @@ function strongNum(n){
     }
     
 }
-console.log(strongNum(num));
+//console.log(strongNum(num));
+
+
+//Pattern
+
+//* * * * *
+//* * * * *
+//* * * * *
+//* * * * *
+
+
+function printP1(n){
+  for(let i=0;i<n;i++){
+    for(let j=0;j<n;j++){
+      process.stdout.write('* ')
+    }
+    console.log();
+  }
+}
+//printP1(5);
+
+//* 
+//* * 
+//* * * 
+//* * * * 
+//* * * * * 
+function printP2(n){
+  for(let i=0;i<n;i++){
+    for(let j=0;j<=i;j++){
+      process.stdout.write('* ')
+    }
+    console.log();
+  }
+}
+//printP2(5);
+
+//1 
+//1 2 
+//1 2 3 
+//1 2 3 4 
+//1 2 3 4 5 
+function printP3(n){
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=i;j++){
+      process.stdout.write(j+' ')
+    }
+    console.log();
+  }
+}
+//printP3(5);
+
+//A 
+//A B 
+//A B C 
+//A B C D 
+//A B C D E 
+function printP4(n){
+  for(let i=1;i<=n;i++){
+    let ch=65
+    for(let j=1;j<=i;j++){
+      process.stdout.write(String.fromCharCode(ch)+' ')
+      ch++;
+    }
+    console.log();
+  }
+}
+//printP4(5);
+
+//* * * * * 
+//* * * * 
+//* * * 
+//* * 
+//* 
+function printP5(n){
+  for(let i=1;i<=n;i++){
+    for(let j=n;j>=i;j--){
+      process.stdout.write('* ')
+    }
+    console.log();
+  }
+}
+//printP5(5);
+
+//* 
+//* * 
+//* * * 
+//* * * * 
+//* * * * * 
+function printP6(n){
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=n-i;j++){
+      process.stdout.write('  ')
+    } 
+    for(let j=1;j<=i;j++){
+      process.stdout.write('* ')
+    }
+    console.log();
+  }
+}
+//printP6(5);
+
+//* 
+//* * 
+//* * * 
+//* * * * 
+//* * * * * 
+function printP7(n){
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=n-i;j++){
+      process.stdout.write(' ')
+    } 
+    for(let j=1;j<=i;j++){
+      process.stdout.write('* ')
+    }
+    console.log();
+  }
+}
+//printP7(5);
+
+function printP8(n){
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=n;j++){
+      if(i==j || i+j==n+1){
+        process.stdout.write('* ')
+      }else{
+        process.stdout.write('  ')
+      }
+    } 
+    console.log();
+  }
+}
+printP8(5);
