@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 29px;
+  font-weight: 800;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.comp {
+  text-decoration: line-through;
+}

@@ -153,3 +153,26 @@ if(true)
 
 
 
+//IMP----->Revision<-----------
+//function and variable are hoisted in java script
+
+//but arrow function and aynonomus function are not hoisted
+
+var getName=()=>{
+    console.log("javascript");
+}
+
+//getName is treated like normal variable
+//getName allocated undefined
+
+
+//same as
+
+var getName2 =function(){
+    console.log("JSX");
+}
+
+//in this above function getName2 saved as variable and when we call it give undefined
+
+
+
