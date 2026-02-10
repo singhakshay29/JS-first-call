@@ -163,6 +163,102 @@ function once(fn){
         }
     }
 }
+
+// function outer() {
+//   let x = 10;
+//   return function inner() {
+//     console.log(x);
+//   };
+// }
+
+// const fn = outer();
+// fn();
+
+// function counter() {
+//   let count = 0;
+//   return function () {
+//     return ++count;
+//   };
+// }
+
+// const c1 = counter();
+// console.log(c1());
+// console.log(c1());
+
+// function test() {
+//   let arr = [];
+//   for (let i = 0; i < 3; i++) {
+//     arr[i] = () => i;
+//   }
+//   return arr;
+// }
+
+// const res = test();
+// console.log(res[0](), res[2]());
+
+// const obj = {
+//   name: "Akshay",
+//   show: function () {
+//     console.log(this.name);
+//   },
+// };
+
+// obj.show();
+
+// const obj = {
+//   name: "React",
+//   show: () => {
+//     console.log(this.name);
+//   },
+// };
+
+// obj.show();
+
+// const user = {
+//   name: "JS",
+//   greet() {
+//     function inner() {
+//       console.log(this.name);
+//     }
+//     inner();
+//   },
+// };
+
+// user.greet();
+
+function add(a, b) {
+  return a + b;
+}
+
+const addFive = add.bind(null, 5);
+console.log(addFive(3));
+
+
+// //createCounter()
+// createCounter()
+// console.log(createCounter().increment() );
+
+// console.log(createCounter().increment() );
+
+
+// function createCounter(){
+//   let counter=0;
+//   const increment = function(){
+//     return counter++;
+//   }
+//   return increment;
+
+// }
+
+function once (fn){
+  let isCalled = false;
+  return function (...args){
+  if(! isCalled){
+     isCalled=true;
+    return fn.apply(this,args);
+  }
+  }
+}
 //⭐ 2️⃣ memoize
 //function memoize(fn) {
 //  const cache = {};
