@@ -532,3 +532,182 @@ console.log(x, y);
 //const data = [" ", "", undefined];
 
 //console.log(data.filter(item => item));
+
+//Solve these:
+
+//Q1 – Two Sum
+
+//Return indices of two numbers adding to target.
+
+//Q2 – Best Time to Buy and Sell Stock
+//Q3 – Contains Duplicate
+//Q4 – Move Zeroes
+//Q5 – Valid Anagram
+//flattenArray
+
+function flattenArray(arr){
+  let result = [];
+  for(let i = 0;i<arr.length;i++){
+    if(Array.isArray(arr[i])){
+      let temp=flattenArray(arr[i]);
+      for(let j=0;j<temp.length;j++){
+        result[result.length] = temp[j];
+      }
+    }else{
+      result[result.length] = arr[i];
+    }
+  }
+  return result;
+}
+
+//remove duplicate
+
+function removeDuplicate(arr){
+  let result = [];
+  for(i=0;i<arr.length;i++){
+    let exist =false;
+    for(let j=0;j<result.length;j++){
+      if(arr[i]=== result[j]){
+        exist=true;
+        break;
+      }
+    }
+    if(!exist){
+      result[result.length]=arr[i];
+    }
+  }
+  return result;
+}
+
+//Max/min in array
+
+function maxMin(arr) {
+  let max = Math.max(arr[0], arr[1]);
+  let min = Math.min(arr[0], arr[1]);
+
+  for (let i = 2; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+  }
+  return { max, min };
+}
+
+console.log(maxMin(arr));
+
+
+//Second largest
+function secondLarge(arr) {
+  let max = Math.max(arr[0], arr[1]);
+  let secMax = Math.min(arr[0], arr[1]);
+  for (let i = 2; i < arr.length; i++) {
+    if (arr[i] > max) {
+      secMax = max;
+      max = arr[i];
+    } else if (arr[i] > secMax && arr[i] != max) {
+      secMax = arr[i];
+    }
+  }
+  return secMax;
+}
+
+console.log(secondLarge(arr));
+
+//Move zeros to left
+
+let value = [1, 6, 0, 3, 1, 5, 0, 7, 9];
+
+function moveZero(arr) {
+  let count = 0;
+  let modifiedArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== 0) {
+      modifiedArray.push(arr[i]);
+    } else {
+      count++;
+    }
+  }
+  while (count > 0) {
+    modifiedArray.push(0);
+    count--;
+  }
+  return modifiedArray;
+}
+
+console.log(moveZero(value));
+
+//2625. Flatten Deeply Nested Array
+
+//Given a multi-dimensional array arr and a depth n, return a flattened version of that array.
+
+
+
+var flat = function (arr, n) {
+  function flattern(arr, depth) {
+      let res = [];
+      for (let i = 0; i < arr.length; i++) {
+          if (Array.isArray(arr[i]) && depth < n) {
+              let temp = flattern(arr[i], depth + 1);
+              for (let j = 0; j < temp.length; j++) {
+                  res[res.length] = temp[j];
+              }
+          } else {
+              res[res.length] = arr[i];
+          }
+      }
+      return res;
+  }
+  return flattern(arr, 0)
+};
+
+//Given a string s containing just the characters
+//'(', ')', '{', '}', '[' and ']',
+//determine if the input string is valid.
+//Input: s = "()[]{}"
+function isValid(s) {
+  let st = [];
+  for (let ch of s) {
+    if (ch == "(" || ch == "[" || ch == "{") {
+      st.push(ch);
+    } else if (ch == ")" || ch == "]" || ch == "}") {
+      let top = st[st.length - 1];
+      if (
+        (ch == ")" && top !== "(") ||
+        (ch == "]" && top !== "[") ||
+        (ch == "}" && top !== "{")
+      ) {
+        return false;
+      }else{
+        st.pop();
+      }
+    }
+  }
+  return  st.length === 0;
+}
+
+// Input: arr[] = [0, -1, 2, -3, 1], target = -2
+// Output: true
+// Explanation: There is a pair (1, -3) with the sum equal to given target, 1 + (-3) = -2.
+
+// Input: arr[] = [1, -2, 1, 0, 5], target = 0
+// Output: false
+// Explanation: There is no pair with sum equals to given target.
+
+function twoSum(arr, target) {
+  let map = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    let find = target - arr[i];
+    if (map.has(find)) {
+      return true;
+    } else {
+      map.add(arr[i]);
+    }
+  }
+  return false;
+}
+
+console.log(twoSum([1, -2, 1, 0, 5],-2))
+
