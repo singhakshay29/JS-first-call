@@ -711,3 +711,88 @@ function twoSum(arr, target) {
 
 console.log(twoSum([1, -2, 1, 0, 5],-2))
 
+//Longest substring without repeating
+
+function longestSubString(s){
+  let set=new Set();
+  let left=0;
+  let maxLength=0;
+  for(let right=0;right<s.length; right++){
+    if(set.has(s[right])){
+      set.delete(s[left]);
+      left++;
+    }
+    set.add(s[right]);
+    maxLength=Math.max(maxLength,right-left+1)
+  }
+  return maxLength;
+}
+
+
+//Given an integer array nums, 
+//move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+//Input: nums = [0,1,0,3,12]
+//Output: [1,3,12,0,0]
+
+function moveZero(arr){
+  let index=0;
+  for(let i=0;i<arr.length;i++){
+    if(arr[i]!==0){
+      arr[index] =arr[i];
+      index++;
+    }
+  }
+  while (index < arr.length){
+    arr[index]=0;
+    index++;
+  }
+  return arr;
+}
+
+//binary Search 
+
+function binarySearch(arr,left=0,right=arr.length-1,x){
+  while(right>=left){
+    let mid = left+ Math.floor((right-left)/2);
+    if(arr[mid] === x){
+      return mid;
+    }
+    if(arr[mid]>x){
+      return binarySearch(arr,0,mid-1,x);
+    }
+    return binarySearch(arr,mid+1,right,x);
+  }
+  return -1;
+}
+let findarr = [ 2, 3, 4, 10, 40 ];
+let target = 10;
+let n = arr.length
+let result = binarySearch(findarr, 0, n - 1, target);
+
+function longestString(str) {
+  let s = str.split(' ');
+  let max = 0;
+  let maxStr='';
+  for (let i = 0; i < s.length; i++) {
+    let length=s[i].length;
+    if(max<length){
+      max=length
+      maxStr=s[i];
+    }
+  }
+  return maxStr;
+}
+
+console.log(longestString("throttle meaning in hindi"))
+console.log(maxSubarraySum(arr));
+
+function maxSubarraySum(arr){
+  let res=arr[0];
+  let maxSum=arr[0];
+  for(let i=1;i<arr.length;i++){
+    maxSum=Math.max(maxSum+arr[i],arr[i]);
+    res=Math.max(maxSum,res);
+  }
+  return res;
+}
