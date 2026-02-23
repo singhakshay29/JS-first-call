@@ -40,7 +40,7 @@ function secondMax (arr){
     return secondMax;
 }
 
-//find  second max
+//find  second min
 
 function secondMin(arr){
     let min=Math.min(arr[0],arr[1]);
@@ -134,12 +134,44 @@ function leftRotation(arr){
     arr[arr.length-1]=temp;
 }
 
-//right rotation by 2
+//right rotation by 1
 
 arr=[2,5,7,9,32,54];
 function rightRotation(arr){
     let temp = arr[arr.length-1];
-    for(let i=1;i<arr.length-1;i++){
-        arr[i+1]=arr[i];
+    for(let i=arr.length-1;i<0;i--){
+        arr[i]=arr[i-1];
     }
+    arr[0]=temp;
 }
+//level II
+
+
+//left rotation by k
+
+//brute force
+//O(n^2)
+function rotationByK(arr,k){
+    k=k%arr.length;
+    for(let i=0;i<k;i++){
+        let temp=arr[0];
+        for(let j=0;j<arr.length-1;j++){
+            arr[j]=arr[j+1];
+        }
+        arr[arr.length-1]=temp;
+    }
+    return arr;
+}
+
+console.log(rotationByK(arr,k));
+
+function rotationByK(arr,k){
+    let temp=new arr[arr.length];
+    k=k%arr.length;
+    for(let i=0;i<arr.length;i++){
+        temp[i]=arr[(i+k)%arr.length];
+    }
+    return temp;
+}
+
+// right rotation by k
