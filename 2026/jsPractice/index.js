@@ -796,3 +796,99 @@ function maxSubarraySum(arr){
   }
   return res;
 }
+
+const s = 'ADOBECODEBANC';
+const t = 'ABC';
+
+function minSubString(s, t) {
+  if (t.length > s.length) return '';
+  let left = 0;
+  let minLength = s.length;
+  let found = 0;
+  let resultStart = 0;
+  let targetMap = new Map();
+
+  for (let char of t) {
+    targetMap.set(char, (targetMap.get(char) || 0) + 1);
+  }
+  let want = targetMap.size;
+  let map = new Map();
+  for (let right = 0; right < s.length; right++) {
+    let char = s[right];
+    map.set(char, (map.get(s[right]) || 0) + 1);
+    if (targetMap.has(char) && targetMap.get(char) === map.get(char)) {
+      found++;
+    }
+    while (want == found) {
+      if (right - left + 1 < minLength) {
+        minLength=right-left+1;
+        resultStart=left;
+      }
+      let leftChar=s[left];
+      map.set(leftChar,map.get(leftChar)-1);
+      if(targetMap.has(leftChar) && map.get(leftChar)<targetMap.get(leftChar)){
+        found--;
+      }
+      left++;
+    }
+  }
+ return minLength === Infinity 
+    ? "" 
+    : s.substring(resultStart, resultStart + minLength);
+}
+console.log(minSubString(s, t));
+
+function validAnagram(s, t) {
+  if (s.length !== t.length) return false;
+  const tMap = new Map();
+  for (let char of t) {
+    tMap.set(char, (tMap.get(char) || 0) + 1);
+  }
+  for (let char of s) {
+    if (!tMap.has(char)) return false;
+    tMap.set(char, tMap.get(char) - 1);
+    if (tMap.get(char) === 0) {
+      tMap.delete(char);
+    }
+  }
+  return tMap.size === 0;
+}
+console.log(validAnagram('anagram', 'nagaram'));
+
+function findTwice(arr) {
+  const set = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    if (set.has(arr[i])) return true;
+    set.add(arr[i]);
+  }
+  return false;
+}
+console.log(findTwice([1, 2, 3, 4]));
+
+function longestConsecutive(nums) {
+  if (nums.length === 0) return 0;
+
+  const set = new Set(nums);
+  let maxLength = 0;
+
+  for (let num of set) {
+
+    // only start if it's beginning of sequence
+    if (!set.has(num - 1)) {
+
+      let current = num;
+      let count = 1;
+
+      while (set.has(current + 1)) {
+        current++;
+        count++;
+      }
+
+      maxLength = Math.max(maxLength, count);
+    }
+  }
+
+  return maxLength;
+}
+
+console.log(longestConsecutive([100,4,200,1,3,2]));
