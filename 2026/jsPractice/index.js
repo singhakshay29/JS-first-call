@@ -796,3 +796,175 @@ function maxSubarraySum(arr){
   }
   return res;
 }
+
+const s = 'ADOBECODEBANC';
+const t = 'ABC';
+
+function minSubString(s, t) {
+  if (t.length > s.length) return '';
+  let left = 0;
+  let minLength = s.length;
+  let found = 0;
+  let resultStart = 0;
+  let targetMap = new Map();
+
+  for (let char of t) {
+    targetMap.set(char, (targetMap.get(char) || 0) + 1);
+  }
+  let want = targetMap.size;
+  let map = new Map();
+  for (let right = 0; right < s.length; right++) {
+    let char = s[right];
+    map.set(char, (map.get(s[right]) || 0) + 1);
+    if (targetMap.has(char) && targetMap.get(char) === map.get(char)) {
+      found++;
+    }
+    while (want == found) {
+      if (right - left + 1 < minLength) {
+        minLength=right-left+1;
+        resultStart=left;
+      }
+      let leftChar=s[left];
+      map.set(leftChar,map.get(leftChar)-1);
+      if(targetMap.has(leftChar) && map.get(leftChar)<targetMap.get(leftChar)){
+        found--;
+      }
+      left++;
+    }
+  }
+ return minLength === Infinity 
+    ? "" 
+    : s.substring(resultStart, resultStart + minLength);
+}
+console.log(minSubString(s, t));
+
+function validAnagram(s, t) {
+  if (s.length !== t.length) return false;
+  const tMap = new Map();
+  for (let char of t) {
+    tMap.set(char, (tMap.get(char) || 0) + 1);
+  }
+  for (let char of s) {
+    if (!tMap.has(char)) return false;
+    tMap.set(char, tMap.get(char) - 1);
+    if (tMap.get(char) === 0) {
+      tMap.delete(char);
+    }
+  }
+  return tMap.size === 0;
+}
+console.log(validAnagram('anagram', 'nagaram'));
+
+function findTwice(arr) {
+  const set = new Set();
+  for (let i = 0; i < arr.length; i++) {
+    if (set.has(arr[i])) return true;
+    set.add(arr[i]);
+  }
+  return false;
+}
+console.log(findTwice([1, 2, 3, 4]));
+
+function longestConsecutive(nums) {
+  if (nums.length === 0) return 0;
+
+  const set = new Set(nums);
+  let maxLength = 0;
+
+  for (let num of set) {
+
+    // only start if it's beginning of sequence
+    if (!set.has(num - 1)) {
+
+      let current = num;
+      let count = 1;
+
+      while (set.has(current + 1)) {
+        current++;
+        count++;
+      }
+
+      maxLength = Math.max(maxLength, count);
+    }
+  }
+
+  return maxLength;
+}
+
+console.log(longestConsecutive([100,4,200,1,3,2]));
+
+//Minimum Size Subarray Sum (Sliding Window)
+// target = 7
+// nums = [2,3,1,2,4,3]
+
+function subArray(arr, target) {
+  let left = 0;
+  let sum = 0;
+  let minSize = 100;
+  for (let right = 0; right < arr.length; right++) {
+      sum+=arr[right];
+      while(sum >= target){
+        minSize=Math.min(minSize,right-left+1);
+        sum-=arr[left];
+         left++;
+      }  
+  }
+
+  return minSize;
+}
+console.log(subArray([2,3,1,2,4,3],7));
+
+var maxProfit = function(prices) {
+  let left=0;
+  let right=1;
+  let maxProfit=0;
+  while(right<prices.length){
+    if(prices[right]>prices[left]){
+        maxProfit=Math.max(maxProfit,prices[right]-prices[left]);
+    }else{
+        left=right;
+    }
+    right++;
+  } 
+  return maxProfit; 
+};
+
+array.prototype.myForEach = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    callback(this[i], i, this);
+  }
+};
+//myMap
+
+array.prototype.myMap = function (callback) {
+  let res = [];
+  for (let i = 0; i < this.length; i++) {
+    res.push(callback(this[i], i, this));
+  }
+  return res;
+};
+
+//myFilter
+
+array.prototype.myFilter = function (callback) {
+  let res = [];
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) {
+      res.push(this[i]);
+    }
+  }
+  return res;
+};
+
+array.prototype.myReducer = function (initialValue, callback) {
+  let accumulator = initialValue;
+  let startIndex = 0;
+  if (accumulator === undefined) {
+    accumulator = this[0];
+    startIndex = 1;
+  }
+  for (let i = startIndex; i < this.length; i++) {
+    accumulator = callback(this[i], i, this);
+  }
+  return accumulator;
+};
