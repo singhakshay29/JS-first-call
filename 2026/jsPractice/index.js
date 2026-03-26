@@ -968,3 +968,42 @@ array.prototype.myReducer = function (initialValue, callback) {
   }
   return accumulator;
 };
+//Find the first non-repeating character in a string.
+//"aabcbcde" → d
+
+
+function nonRepeating(str){
+  let map={};
+  for(let char of str){
+    map[char]=(map[char]||0)+1;
+  }
+  for(let char of str){
+    if(map[char]===1){
+      return char;
+    }
+  }
+  return '';
+}
+console.log(nonRepeating("aabcbcde"));
+
+
+//Count Subarrays having Sum K
+
+function countSubArray(arr, k) {
+  let count = 0;
+  let currentSum=0;
+  let preFixSum = new Map();
+  for (let i = 0; i < arr.length; i++) {
+    currentSum=currentSum+arr[i];
+    if(currentSum===k){
+      count++;
+    }
+    if(preFixSum.has(currentSum-k)){
+      count+=preFixSum.get(currentSum-k);
+    }
+    preFixSum.set(currentSum,(preFixSum.get(currentSum)||0)+1);
+  }
+  return count;
+}
+
+console.log(countSubArray([1,2,3,1,1,1],3))
