@@ -141,24 +141,28 @@ function equalZeroAndOne(arr) {
 //Convert 0 → -1
 //Reduce to sum = 0 problem
 //✅ Q4: Longest Subarray Sum = K (Correct Approach)
-function longestSubArray(arr, k) {
+function longestSubarraySumK(arr, k) {
   let map = new Map();
-  let sum = 0;
+  let currentSum = 0;
   let maxLength = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
+    currentSum += arr[i];
 
-    if (sum === k) {
+    // Case 1: from index 0 to i
+    if (currentSum === k) {
       maxLength = i + 1;
     }
 
-    if (map.has(sum - k)) {
-      maxLength = Math.max(maxLength, i - map.get(sum - k));
+    // Case 2: subarray in middle
+    if (map.has(currentSum - k)) {
+      let prevIndex = map.get(currentSum - k);
+      maxLength = Math.max(maxLength, i - prevIndex);
     }
 
-    if (!map.has(sum)) {
-      map.set(sum, i);
+    // Store only first occurrence
+    if (!map.has(currentSum)) {
+      map.set(currentSum, i);
     }
   }
 
